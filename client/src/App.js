@@ -7,14 +7,10 @@ class App extends Component {
   render() {
     return (
 		<div className="App">
-			<div className="row py-5">
-				<div className="col"></div>
-				<div className="col align-self-center">
+				<div className="quiz-content">
 					<Search />
 					<Quiz />
 				</div>
-				<div className="col"></div>
-			</div>
 			
 		</div>
     );

@@ -1,0 +1,25 @@
+.resultItem {
+    height: auto;
+    width: 100%;
+    max-height: 250px;
+    background-color: #fafafa;
+    overflow: hidden;
+}
+.resultItem img {
+    float: left;
+    height: 150px;
+    max-height: 150px;
+    overflow-y: hidden;
+}
+.resultItem h1 {
+    text-align: left;
+}
+.resultItem p {
+    text-align: left;
+}
+.resultItem ul {
+    text-align: left;
+}
+.resultItem ul li {
+    display: inline;
+}
