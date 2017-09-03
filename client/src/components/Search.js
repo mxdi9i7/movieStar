@@ -19,16 +19,11 @@ class Search extends Component {
     
     handleChange(e) {
         const query = e.target.value
-        if (!e.target.value) {
-            axios.get('http://localhost:3001/api/a' + query).then((data) => {
+        if (e.target.value) {
+            axios.get('http://localhost:3001/api/' + query).then((data) => {
                 this.setState({data: data.data.results})
             })
-            this.setState({queryName: query})
         }
-        axios.get('http://localhost:3001/api/' + query).then((data) => {
-            this.setState({data: data.data.results})
-        })
-        this.setState({queryName: query})
     }
     handleSubmit() {
         const query = this.state.queryName
