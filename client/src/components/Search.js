@@ -55,20 +55,20 @@ class Search extends Component {
                 <div className="form-group">
                     <label className="text-align-left">Enter a movie star's name:</label>
                     <input className="form-control searchInput" value={this.state.queryName} onChange={this.handleChange} placeholder="Enter a movie star's name here" />
-                    <button onClick={this.handleSubmit}>Search</button>
+                    <button className="btn btn-primary" onClick={this.handleSubmit}>Search</button>
                 </div>
-                { resultList ? resultList.map((item, index) => (
-                        <div className="searchResults" key={index}>
-                            <div className="resultItem">
+                <div className="searchResult">
+                    { resultList ? resultList.map((item, index) => (
+                            
+                            <div className="resultItem" key={index}>
                                 <div className="imgContainer">
                                     <img src={item.full_path} alt="" />
                                 </div>
                                 <h1>Name: {item.name}</h1>
                             </div>
-                        </div>
-                    )) : <h1>Your search did not return any result, please try a valid name.</h1>
-                }
-                
+                        )) : <h1>Your search did not return any result, please try a valid name.</h1>
+                    }
+                </div>
             </div>
         );
        

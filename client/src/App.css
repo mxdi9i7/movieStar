@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  height: 100vh;
+  overflow-y: hidden;
 }
 
 .App-logo {
@@ -18,10 +20,33 @@
   font-size: large;
 }
 .quiz-content {
-  width: 1200px;
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 800px;
+  max-width: 800px;
+  margin: 15% auto 0 auto;
+  box-shadow: 0 1px 8px 0 rgba(0,0,0,.2), 0 3px 4px 0 rgba(0,0,0,.14), 0 3px 3px -2px rgba(0,0,0,.12);
+  padding: 20px;
+  background-color: #fff;
 }
+body {
+  background: #222;
+  color: #FFF;
+}
+
+.skewed-bg {
+  background: #00B285;
+  padding: 0;
+  height: 100vh;
+  -webkit-transform: skew(0deg, -10deg);
+  transform: skew(0deg, -10deg);
+  margin-top: -100px;
+}
+.skewed-bg .content {
+  -webkit-transform: skew(0deg, 10deg);
+  transform: skew(0deg, 10deg);
+  text-align: center;
+}
+
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

@@ -5,14 +5,39 @@
     background-color: #fafafa;
     overflow: hidden;
 }
+.resultItem:hover {
+    background-color:white;
+    cursor: pointer;
+}
+.searchBar .searchInput {
+    display: inline-block;
+    width: 80%;
+}
+.searchBar button {
+    display: inline-block;
+    width: 15%;
+}
+.searchBar button:hover {
+    cursor: pointer;
+}
+.searchResult {
+    margin: 0 auto;
+    width: 95%;
+    max-height: 400px;
+    overflow: scroll;
+}
 .resultItem img {
     float: left;
-    height: 150px;
+    height: 50px;
+    width: 50px;
     max-height: 150px;
     overflow-y: hidden;
 }
 .resultItem h1 {
     text-align: left;
+    display: inline;
+    font-size: 16px;
+    color: #444;
 }
 .resultItem p {
     text-align: left;
