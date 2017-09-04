@@ -22,7 +22,7 @@
 }
 .searchResult {
     margin: 0 auto;
-    width: 95%;
+    width: 80%;
     max-height: 400px;
     overflow: scroll;
 }

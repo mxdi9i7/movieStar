@@ -1,0 +1,17 @@
+.quizBlock h1 {
+    color: #444;
+}
+* {
+    color: #444;
+}
+.actorBlock {
+    min-height: 500px;
+}
+.quizContent .mcChoice {
+    text-align: left;
+    padding: 10px;
+}
+.quizContent .mcChoice:hover {
+    background-color: #fafafa;
+    cursor: pointer;
+}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import $ from 'jquery'
+// import $ from 'jquery'
 import axios from 'axios'
+import { Link } from 'react-router-dom';
 require('../css/Search.css')
 class Search extends Component {
     constructor() {
@@ -12,7 +13,7 @@ class Search extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     componentDidMount() {
-        axios.get(`http://localhost:3001/api/a`).then((data) => {
+        axios.get(`http://localhost:3001/api/fetch/people/byName/peter`).then((data) => {
             this.setState({data: data.data.results})
         })
     }
@@ -20,7 +21,7 @@ class Search extends Component {
     handleChange(e) {
         const query = e.target.value
         if (e.target.value) {
-            axios.get('http://localhost:3001/api/' + query).then((data) => {
+            axios.get('http://localhost:3001/api/fetch/people/byName/' + query).then((data) => {
                 this.setState({data: data.data.results})
             })
         }
@@ -32,7 +33,7 @@ class Search extends Component {
                 this.setState({data: data.data.results, queryName: ""})
             })
         }
-        axios.get('http://localhost:3001/api/' + query).then((data) => {
+        axios.get('http://localhost:3001/api/fetch/people/byName/' + query).then((data) => {
             this.setState({data: data.data.results, queryName: ""})
         })
     }
@@ -55,17 +56,18 @@ class Search extends Component {
                 <div className="form-group">
                     <label className="text-align-left">Enter a movie star's name:</label>
                     <input className="form-control searchInput" value={this.state.queryName} onChange={this.handleChange} placeholder="Enter a movie star's name here" />
-                    <button className="btn btn-primary" onClick={this.handleSubmit}>Search</button>
+                    {/* <button className="btn btn-primary" onClick={this.handleSubmit}>Search</button> */}
                 </div>
                 <div className="searchResult">
                     { resultList ? resultList.map((item, index) => (
-                            
-                            <div className="resultItem" key={index}>
+                        <Link to={{ pathname: '/quiz/' + item.id}} key={index}>
+                            <div className="resultItem">
                                 <div className="imgContainer">
                                     <img src={item.full_path} alt="" />
                                 </div>
                                 <h1>Name: {item.name}</h1>
                             </div>
+                        </Link>
                         )) : <h1>Your search did not return any result, please try a valid name.</h1>
                     }
                 </div>
