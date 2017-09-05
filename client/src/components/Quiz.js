@@ -36,39 +36,24 @@ class Quiz extends Component {
                     const randomDay = getRandomNum(1,31)
                     mcArray.push(`${randomYear}-${randomMonth}-${randomDay}`)
                 }
-                this.setState({data:data.data, arr: mcArray}, () => {
-                    console.log(this.state.arr)
-                })
+                this.setState({data:data.data, arr: mcArray})
             })
         })
     }
     checkAnswer(e) {
-        // console.log(e.target.innerText)
-        // if (e.target.innerText == this.state.data.birthday) {
-        //     this.props.history.location.pathname = '/result/1/' + this.state.data.id
-        //     console.log('it was right', this.props)
-        // } else {
-        //     this.props.history.location.pathname = '/result/0/' + this.state.data.id
-        //     console.log('it was wrong', this.props)
-        // }
+        console.log(e.target.innerText)
+        if (e.target.innerText == this.state.data.birthday) {
+            this.props.history.push('/result/1/' + this.state.data.id)
+            console.log('it was right', this.props)
+        } else {
+            this.props.history.push('/result/0/' + this.state.data.id)
+            console.log('it was wrong', this.props)
+        }
     }
     render() {
         const actor = this.state.data
         const actorImg = `http://image.tmdb.org/t/p/w185/${actor.profile_path}`
         const arr = this.state.arr;
-        console.log(arr)
-        let mcChoice;
-        if (arr) {
-            for (var i = 0; i<arr.length; i++) {
-                if (arr[i] == actor.birthday) {
-                    mcChoice = (
-                        <Link key={i} className="mcChoice" to={'/result/1/' + actor.name}>
-                            {i+1}. <span>{arr[i]}</span>
-                        </Link>
-                    )
-                }
-            }
-        }
         return (
             <div className="quizBlock">
                 <span><Link to="/">Back</Link></span>
@@ -84,7 +69,12 @@ class Quiz extends Component {
                     <div className="quizContent col">
                         <h2>When was his birthday?</h2>
                         {
-                            arr ? { mcChoice }
+                            arr ? arr.map((question, i) => 
+                                question == arr[i] &&
+                                <p key={i} className="mcChoice" onClick={this.checkAnswer}>
+                                    {question}
+                                </p>
+                            ) 
                             : "Data cannot display"
                         }
                     </div>

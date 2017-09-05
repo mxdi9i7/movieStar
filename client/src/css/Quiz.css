@@ -11,8 +11,9 @@
     text-align: left;
     padding: 10px;
 }
-.quizContent .mcChoice p {
+.quizContent .mcChoice Link {
     text-align: left;
+    display: block;
     padding: 10px;
 }
 .quizContent .mcChoice:hover {

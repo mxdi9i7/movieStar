@@ -12,7 +12,7 @@ class QuizPage extends Component {
                     <div className="skewed-bg">
                         <div className="content">
                             <div className="quiz-content">
-                                <Quiz query={this.props.match.params.query} history={history}/>
+                                <Quiz query={this.props.match.params.query} history={this.props.history}/>
                             </div>
                         </div>
                     </div>
