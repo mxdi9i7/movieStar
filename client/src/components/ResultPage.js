@@ -10,7 +10,7 @@ class ResultPage extends Component {
                     <div className="skewed-bg">
                         <div className="content">
                             <div className="result-content">
-                                <Result query={this.props.match.params.query} check={this.props.match.params.check}/>
+                                <Result version={this.props.match.params.version} query={this.props.match.params.query} check={this.props.match.params.check}/>
                             </div>
                         </div>
                     </div>

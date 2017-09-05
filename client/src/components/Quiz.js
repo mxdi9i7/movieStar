@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Link, BrowserRouter } from 'react-router-dom';
-import { createBrowserHistory as history } from 'history/createBrowserHistory';
-
 import axios from 'axios'
 require('../css/Quiz.css')
 class Quiz extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
-            data: {}
+            data: {},
+            query: this.props.query,
+            version: this.props.version
         }
         this.checkAnswer = this.checkAnswer.bind(this)
     }
@@ -29,31 +29,55 @@ class Quiz extends Component {
         this.setState({query: queryNum}, () => {
             axios.get(`http://localhost:3001/api/fetch/person/byId/${this.state.query}`)
             .then((data) => {
-                const mcArray = [data.data.birthday]
+                //question that asks about the actor's date of birth
+                const dobArray = [data.data.birthday]
                 for (var i = 0; i < 3; i++) {
                     const randomYear = getRandomNum(1950,2000)
                     const randomMonth = getRandomNum(1,12)
                     const randomDay = getRandomNum(1,31)
-                    mcArray.push(`${randomYear}-${randomMonth}-${randomDay}`)
+                    dobArray.push(`${randomYear}-${randomMonth}-${randomDay}`)
                 }
-                this.setState({data:data.data, arr: mcArray})
+                //question that asks about the actor's place of birth
+                const pobArray = [data.data.place_of_birth]
+                var cleanPobArray
+                this.setState({data:data.data, }, () => {
+                    for (var i=0; i < 10; i++) {
+                        axios.get(`http://localhost:3001/api/fetch/person/byId/${getRandomNum(1,10000)}`)
+                        .then((data) => {
+                            pobArray.push(data.data.place_of_birth)
+                            cleanPobArray = pobArray.filter((item) => {
+                                return !!item;
+                            }).slice(0, 4)
+                            this.setState({dobArray, cleanPobArray, version: this.props.version})
+                        })
+                    }
+                })
             })
         })
     }
     checkAnswer(e) {
-        console.log(e.target.innerText)
-        if (e.target.innerText == this.state.data.birthday) {
-            this.props.history.push('/result/1/' + this.state.data.id)
-            console.log('it was right', this.props)
+        if (this.state.version == "a") {
+            if (e.target.innerText == this.state.data.birthday) {
+                this.props.history.push(`/result/1/${this.state.data.id}/${this.state.version}`)
+            } else {
+                this.props.history.push(`/result/0/${this.state.data.id}/${this.state.version}`)
+            }
         } else {
-            this.props.history.push('/result/0/' + this.state.data.id)
-            console.log('it was wrong', this.props)
+            if (e.target.innerText == this.state.data.place_of_birth) {
+                this.props.history.push(`/result/1/${this.state.data.id}/${this.state.version}`)
+            } else {
+                this.props.history.push(`/result/0/${this.state.data.id}/${this.state.version}`)
+            }
         }
+        
     }
     render() {
         const actor = this.state.data
         const actorImg = `http://image.tmdb.org/t/p/w185/${actor.profile_path}`
-        const arr = this.state.arr;
+        const dobArray = this.state.dobArray;
+        const cleanPobArray = this.state.cleanPobArray;
+        const quizVersion = this.state.version;
+
         return (
             <div className="quizBlock">
                 <span><Link to="/">Back</Link></span>
@@ -67,16 +91,31 @@ class Quiz extends Component {
                         <h1 className="actorName">{actor.name}</h1>
                     </div>
                     <div className="quizContent col">
-                        <h2>When was his birthday?</h2>
                         {
-                            arr ? arr.map((question, i) => 
-                                question == arr[i] &&
-                                <p key={i} className="mcChoice" onClick={this.checkAnswer}>
-                                    {question}
-                                </p>
-                            ) 
-                            : "Data cannot display"
-                        }
+                            quizVersion == "a" ? (
+                            <ol>
+                                {
+                                    dobArray ? dobArray.map((question, i) => 
+                                    question == dobArray[i] &&
+                                    <li key={i} className="mcChoice" onClick={this.checkAnswer}>
+                                        {question}
+                                    </li>
+                                    ) 
+                                    : "Data cannot display"
+                                }
+                            </ol> ):(
+                            <ol>
+                                {
+                                    cleanPobArray ? cleanPobArray.map((question, i) => 
+                                    question == cleanPobArray[i] &&
+                                    <li key={i} className="mcChoice" onClick={this.checkAnswer}>
+                                        {question}
+                                    </li>
+                                    ) 
+                                    : "Data cannot display"
+                                }
+                            </ol>
+                        )}
                     </div>
                 </div>
                 

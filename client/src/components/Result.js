@@ -3,13 +3,61 @@ import { Link } from 'react-router-dom';
 import axios from 'axios'
 require('../css/Result.css')
 class Result extends Component {
-
+    constructor(props) {
+        super(props)
+        this.state = {
+            check: this.props.check,
+            query: this.props.query,
+            version: this.props.version
+        }
+    }
+    componentWillMount() {
+        axios.get(`http://localhost:3001/api/fetch/person/byId/${Number(this.state.query)}`)
+        .then((data) => {
+            this.setState({data: data.data})
+        })
+    }
     render() {
-        
+        const actor = this.state.data
+        const versionA = "a";
+        const versionB = "b";
         return (
-            <div>
+            <div className="resultBlock">
+                {
+                    this.state.check == 1 ? (
+                    <div>
+                        <h1>Congratulations!</h1>
+                        <div className="clearfix">
+                            <div className="float-left">
+                                <Link to={{pathname: '/'}}>
+                                    Back to home page
+                                </Link>
+                            </div>
+                            <div className="float-right">
+                                <Link to={{pathname: `/quiz/${this.state.query}/${this.state.version == versionA ? versionB : versionA}`}} >
+                                    Play another game
+                                </Link>
+                            </div>
+                        </div>
+                    </div> 
+                    ): (
+                    <div>
+                        <h1>Oooops! You got it wrong.</h1>
+                        <div className="clearfix">
+                            <div className="float-left">
+                                <Link to={{pathname: '/'}}>
+                                    Back to home page
+                                </Link>
+                            </div>
+                            <div className="float-right">
+                                <Link to={{pathname: `/quiz/${this.state.query}/${this.state.version == versionA ? versionA : versionB}`}} >
+                                    Play again
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                )}
                 
-                Result
             </div>
         );
     }

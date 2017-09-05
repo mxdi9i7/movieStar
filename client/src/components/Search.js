@@ -60,7 +60,7 @@ class Search extends Component {
                 </div>
                 <div className="searchResult">
                     { resultList ? resultList.map((item, index) => (
-                        <Link to={{ pathname: '/quiz/' + item.id}} key={index}>
+                        <Link to={{ pathname: '/quiz/' + item.id + '/a'}} key={index}>
                             <div className="resultItem">
                                 <div className="imgContainer">
                                     <img src={item.full_path} alt="" />
