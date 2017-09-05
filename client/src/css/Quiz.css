@@ -7,7 +7,11 @@
 .actorBlock {
     min-height: 500px;
 }
-.quizContent .mcChoice {
+.quizBlock .mcChoice {
+    text-align: left;
+    padding: 10px;
+}
+.quizContent .mcChoice p {
     text-align: left;
     padding: 10px;
 }

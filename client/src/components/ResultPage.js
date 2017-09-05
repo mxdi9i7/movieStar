@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
-import Quiz from './Quiz';
-import history from './history'
-class QuizPage extends Component {
-
+import Result from './Result'
+class ResultPage extends Component {
     componentDidMount() {
-        
+       
     }
     render() {
         return (
             <div className="App">
                     <div className="skewed-bg">
                         <div className="content">
-                            <div className="quiz-content">
-                                <Quiz query={this.props.match.params.query} history={history}/>
+                            <div className="result-content">
+                                <Result query={this.props.match.params.query} check={this.props.match.params.check}/>
                             </div>
                         </div>
                     </div>
@@ -21,7 +19,7 @@ class QuizPage extends Component {
     }
 }
 
-export default QuizPage;
+export default ResultPage;
 
 
 
