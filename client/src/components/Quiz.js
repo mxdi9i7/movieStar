@@ -76,7 +76,6 @@ class Quiz extends Component {
         const dobArray = this.state.dobArray;
         const cleanPobArray = this.state.cleanPobArray;
         const quizVersion = this.state.version;
-        console.log(this.state)
         return (
             <div className="quizBlock">
                 <div className="row">
