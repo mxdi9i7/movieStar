@@ -37,7 +37,6 @@ class Search extends Component {
                     self.full_path = `${baseUrl}${self.profile_path}`;
                 }
             }
-            
         }
         return (
             <div className="searchBar">
