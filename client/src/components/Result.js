@@ -26,15 +26,18 @@ class Result extends Component {
                 {
                     this.state.check == 1 ? (
                     <div>
-                        <h1>Congratulations!</h1>
+                        <h1>Congratulations, You got it right!</h1>
+                        <p>You may go back to the home page or answer another question about {
+                            actor ? actor.name : "this person"
+                            }.</p>
                         <div className="clearfix">
                             <div className="float-left">
-                                <Link to={{pathname: '/'}}>
+                                <Link to={{pathname: '/'}} className="btn leftBtn btn-danger">
                                     Back to home page
                                 </Link>
                             </div>
                             <div className="float-right">
-                                <Link to={{pathname: `/quiz/${this.state.query}/${this.state.version == versionA ? versionB : versionA}`}} >
+                                <Link className="btn rightBtn btn-success" to={{pathname: `/quiz/${this.state.query}/${this.state.version == versionA ? versionB : versionA}`}} >
                                     Play another game
                                 </Link>
                             </div>
@@ -42,18 +45,15 @@ class Result extends Component {
                     </div> 
                     ): (
                     <div>
-                        <h1>Oooops! You got it wrong.</h1>
-                        <div className="clearfix">
-                            <div className="float-left">
-                                <Link to={{pathname: '/'}}>
+                        <h1>Oooops, You got it wrong.</h1>
+                        <p>You may go back to the home page or try again.</p>
+                        <div>
+                                <Link to={{pathname: '/'}} className="btn leftBtn btn-danger">
                                     Back to home page
                                 </Link>
-                            </div>
-                            <div className="float-right">
-                                <Link to={{pathname: `/quiz/${this.state.query}/${this.state.version == versionA ? versionA : versionB}`}} >
+                                <Link className="btn rightBtn btn-success" to={{pathname: `/quiz/${this.state.query}/${this.state.version == versionA ? versionA : versionB}`}} >
                                     Play again
                                 </Link>
-                            </div>
                         </div>
                     </div>
                 )}

@@ -14,6 +14,7 @@ class ResultPage extends Component {
                             </div>
                         </div>
                     </div>
+                    <p className="copyright">Designed and Developed by Peter Zheng</p>
             </div>
         );
     }

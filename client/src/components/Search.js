@@ -38,34 +38,37 @@ class Search extends Component {
         })
     }
     render() {
-        const resultList = this.state.data;
+        var resultList = this.state.data;
         const baseUrl = "http://image.tmdb.org/t/p/w185/";
         if (resultList) {
             for (var i =0; i < resultList.length; i++) {
                 var self = resultList[i];
                 if (self.profile_path == null) {
-                    self.full_path = `https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png`
+                    self.full_path = `https://goo.gl/EHMUZZ`
                 } else {
                     self.full_path = `${baseUrl}${self.profile_path}`;
                 }
-                
             }
+            
         }
         return (
             <div className="searchBar">
+                <div className="card-header">
+                    <h1>Search for your favorite movie star</h1>
+                </div>
                 <div className="form-group">
-                    <label className="text-align-left">Enter a movie star's name:</label>
                     <input className="form-control searchInput" value={this.state.queryName} onChange={this.handleChange} placeholder="Enter a movie star's name here" />
                     {/* <button className="btn btn-primary" onClick={this.handleSubmit}>Search</button> */}
                 </div>
-                <div className="searchResult">
+                <div className="searchResult row">
                     { resultList ? resultList.map((item, index) => (
-                        <Link to={{ pathname: '/quiz/' + item.id + '/a'}} key={index}>
+                        <Link className="col-md-3 col-sm-4 col-6" to={{ pathname: '/quiz/' + item.id + '/a'}} key={index}>
                             <div className="resultItem">
                                 <div className="imgContainer">
                                     <img src={item.full_path} alt="" />
+                                    <h1>{item.name}</h1>
                                 </div>
-                                <h1>Name: {item.name}</h1>
+                                
                             </div>
                         </Link>
                         )) : <h1>Your search did not return any result, please try a valid name.</h1>

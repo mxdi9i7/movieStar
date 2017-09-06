@@ -18,6 +18,7 @@ class App extends Component {
 					<Route path="/result/:check/:query/:version" history={createHistory} component={ResultPage} />
 				</div>
 			</Router>
+			
     );
   }
 }

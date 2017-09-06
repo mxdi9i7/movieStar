@@ -9,11 +9,12 @@ class SearchPage extends Component {
             <div className="App">
                     <div className="skewed-bg">
                         <div className="content">
-                            <div className="quiz-content">
+                            <div className="search-content">
                                 <Search />
                             </div>
                         </div>
                     </div>
+                    <p className="copyright">Designed and Developed by Peter Zheng</p>
             </div>
         );
     }
