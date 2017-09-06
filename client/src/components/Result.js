@@ -25,24 +25,37 @@ class Result extends Component {
             <div className="resultBlock">
                 {
                     this.state.check == 1 ? (
-                    <div>
-                        <h1>Congratulations, You got it right!</h1>
-                        <p>You may go back to the home page or answer another question about {
-                            actor ? actor.name : "this person"
-                            }.</p>
-                        <div className="clearfix">
-                            <div className="float-left">
-                                <Link to={{pathname: '/'}} className="btn leftBtn btn-danger">
-                                    Back to home page
-                                </Link>
-                            </div>
-                            <div className="float-right">
-                                <Link className="btn rightBtn btn-success" to={{pathname: `/quiz/${this.state.query}/${this.state.version == versionA ? versionB : versionA}`}} >
-                                    Play another game
-                                </Link>
-                            </div>
-                        </div>
-                    </div> 
+                        this.state.version == versionA ? (
+                            <div>
+                                <h1>Congratulations, You got it right!</h1>
+                                <p>You may go back to the home page or answer another question about {
+                                    actor ? actor.name : "this person"
+                                    }.</p>
+                                <div className="clearfix">
+                                    <div className="float-left">
+                                        <Link to={{pathname: '/'}} className="btn leftBtn btn-danger">
+                                            Back to home page
+                                        </Link>
+                                    </div>
+                                    <div className="float-right">
+                                        <Link className="btn rightBtn btn-success" to={{pathname: `/quiz/${this.state.query}/${this.state.version == versionA ? versionB : versionA}`}} >
+                                            Play another game
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div> 
+                        ) : (
+                            <div>
+                                <h1>Congratulations, You got it right!</h1>
+                                <p>You may go back to the home page and answer questions about other Hollywood stars.</p>
+                                <div>
+                                    <Link to={{pathname: '/'}} className="btn btn-danger">
+                                        Back to home page
+                                    </Link>
+                                </div>
+                            </div> 
+                        )
+                    
                     ): (
                     <div>
                         <h1>Oooops, You got it wrong.</h1>
