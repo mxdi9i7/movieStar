@@ -13,7 +13,7 @@ class Search extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     componentDidMount() {
-        axios.get(`http://localhost:3001/api/fetch/people/byName/peter`).then((data) => {
+        axios.get(`http://104.131.73.87:3001/api/fetch/people/byName/peter`).then((data) => {
             this.setState({data: data.data.results})
         })
     }
@@ -21,7 +21,7 @@ class Search extends Component {
     handleChange(e) {
         const query = e.target.value
         if (e.target.value) {
-            axios.get('http://localhost:3001/api/fetch/people/byName/' + query).then((data) => {
+            axios.get('http://104.131.73.87:3001/api/fetch/people/byName/' + query).then((data) => {
                 this.setState({data: data.data.results})
             })
         }
@@ -29,11 +29,11 @@ class Search extends Component {
     handleSubmit() {
         const query = this.state.queryName
         if (!this.state.queryName) {
-            axios.get('http://localhost:3001/api/a' + query).then((data) => {
+            axios.get('http://104.131.73.87:3001/api/fetch/people/byName/a' + query).then((data) => {
                 this.setState({data: data.data.results, queryName: ""})
             })
         }
-        axios.get('http://localhost:3001/api/fetch/people/byName/' + query).then((data) => {
+        axios.get('http://104.131.73.87:3001/api/fetch/people/byName/' + query).then((data) => {
             this.setState({data: data.data.results, queryName: ""})
         })
     }

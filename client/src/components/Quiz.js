@@ -27,7 +27,7 @@ class Quiz extends Component {
             return copy;
         }
         this.setState({query: queryNum}, () => {
-            axios.get(`http://localhost:3001/api/fetch/person/byId/${this.state.query}`)
+            axios.get(`http://104.131.73.87:3001/api/fetch/person/byId/${this.state.query}`)
             .then((data) => {
                 //question that asks about the actor's date of birth
                 const dobArray = [data.data.birthday]
@@ -42,7 +42,7 @@ class Quiz extends Component {
                 var cleanPobArray
                 this.setState({data:data.data, }, () => {
                     for (var i=0; i < 10; i++) {
-                        axios.get(`http://localhost:3001/api/fetch/person/byId/${getRandomNum(1,10000)}`)
+                        axios.get(`http://104.131.73.87:3001/api/fetch/person/byId/${getRandomNum(1,10000)}`)
                         .then((data) => {
                             pobArray.push(data.data.place_of_birth)
                             cleanPobArray = pobArray.filter((item) => {

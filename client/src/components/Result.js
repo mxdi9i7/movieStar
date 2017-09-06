@@ -12,7 +12,7 @@ class Result extends Component {
         }
     }
     componentWillMount() {
-        axios.get(`http://localhost:3001/api/fetch/person/byId/${Number(this.state.query)}`)
+        axios.get(`http://104.131.73.87:3001/api/fetch/person/byId/${Number(this.state.query)}`)
         .then((data) => {
             this.setState({data: data.data})
         })
